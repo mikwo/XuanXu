@@ -1,0 +1,31 @@
+/* ==========================================================================
+   玄枢 · 四柱排盘   60-dict-footer   词解与页脚
+   词解卡、页脚、免责
+   ========================================================================== */
+
+/* ============ 词解 ============ */
+.dict-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.dict-item{border:1px solid var(--line);border-radius:2px;padding:11px 14px;background:rgba(10,10,17,.4);transition:all .4s}
+.dict-item:hover{border-color:var(--line2);background:rgba(212,175,55,.04)}
+.dict-item b{display:block;font-weight:400;font-size:12.5px;color:var(--gold2);letter-spacing:.16em;margin-bottom:4px}
+.dict-item span{font-size:11.5px;color:var(--dim);line-height:1.85}
+
+/* ============ 页脚 ============ */
+.foot{margin-top:54px;padding-top:22px;border-top:1px solid rgba(212,175,55,.09);font-size:10.5px;color:var(--dim2);line-height:2.1;letter-spacing:.08em;text-align:center}
+.foot b{font-weight:400;color:var(--gold3)}
+
+@media(max-width:900px){
+  .bar-in{height:auto;padding:10px 16px;flex-direction:column;align-items:flex-start;gap:4px}
+  .tabs{width:100%;justify-content:space-between}
+  .tab{padding:8px 6px 10px;font-size:12px;letter-spacing:.16em;text-indent:.16em}
+  .q-in{padding:12px 16px;gap:14px}
+  .wrap{padding:26px 16px 52px}
+  .wuxing{grid-template-columns:repeat(2,1fr)}
+  .cards{grid-template-columns:1fr}
+  .ln-grid{grid-template-columns:repeat(3,1fr)}
+  .dict-grid{grid-template-columns:1fr}
+  .vhead h2{letter-spacing:.3em}
+}
+#warn .warn{margin:10px 0 0;padding:9px 13px;border:1px solid rgba(198,132,86,.42);background:rgba(150,88,48,.12);
+  color:#e0bda0;font-size:12px;line-height:1.75;border-radius:2px;letter-spacing:.3px;animation:fadeUp .5s ease both}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}

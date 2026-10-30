@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>玄枢 · 四柱排盘</title>
+<!-- 样式：按编号加载，编号即层叠顺序 -->
+<link rel="stylesheet" href="css/00-tokens.css">
+<link rel="stylesheet" href="css/10-layout.css">
+<link rel="stylesheet" href="css/20-chart.css">
+<link rel="stylesheet" href="css/30-tip.css">
+<link rel="stylesheet" href="css/40-panels.css">
+<link rel="stylesheet" href="css/50-luck.css">
+<link rel="stylesheet" href="css/60-dict-footer.css">
+<link rel="stylesheet" href="css/70-classics.css">
+
+</head>
+<body>
+<canvas id="stars"></canvas>
+<div id="aura"></div>
+<div id="flash"></div>
+
+<svg class="mandala" viewBox="0 0 800 800" aria-hidden="true">
+  <g class="spin-a"><circle class="r-mid" cx="400" cy="400" r="352"/><g id="ticks"></g></g>
+  <g class="spin-b"><circle class="r-out" cx="400" cy="400" r="392"/></g>
+  <circle class="r-in" cx="400" cy="400" r="286"/>
+  <g id="zhiRing"></g>
+</svg>
+
+<div class="tip" id="tip"><b></b><i></i></div>
+
+<header class="bar">
+  <div class="bar-in">
+    <div class="brand">玄枢<em>四柱排盘</em></div>
+    <nav class="tabs" id="tabs">
+      <button class="tab on" data-v="chart">命盘</button>
+      <button class="tab" data-v="luck">运势</button>
+      <button class="tab" data-v="read">解读</button>
+      <button class="tab" data-v="dict">词解</button>
+      <button class="tab" data-v="classics">典籍</button>
+      <i class="ink" id="ink"></i>
+    </nav>
+  </div>
+</header>
+
+<section class="query">
+  <div class="q-in">
+    <label class="qf"><span>公历生日</span><input type="date" id="date"></label>
+    <label class="qf"><span>出生时刻</span><input type="time" id="time"></label>
+    <label class="qf"><span>经度°E</span><input type="number" id="lon" value="120" min="73" max="135" step="0.1" list="lonList" title="东八区标准经线 120°E。填出生地经度即按真太阳时定时柱"><datalist id="lonList">
+      <option value="116.4">北京</option><option value="121.5">上海</option><option value="113.3">广州</option>
+      <option value="114.2">深圳</option><option value="104.1">成都</option><option value="108.9">西安</option>
+      <option value="114.3">武汉</option><option value="118.8">南京</option><option value="120.2">杭州</option>
+      <option value="117.2">天津</option><option value="126.6">哈尔滨</option><option value="87.6">乌鲁木齐</option>
+      <option value="91.1">拉萨</option><option value="102.7">昆明</option><option value="106.6">重庆</option>
+    </datalist></label>
+    <div class="qf"><span>命主</span>
+      <div class="sex" role="group">
+        <button type="button" data-sex="男" aria-pressed="true">乾造</button>
+        <button type="button" data-sex="女" aria-pressed="false">坤造</button>
+      </div>
+    </div>
+    <button class="cast" id="castBtn"><span>起盘</span></button>
+    <label class="of" title="羊刃取法：此星两书皆有明文、结论相左，故留一开关；改即重算。通会＝禄前一辰（癸在丑）／子平＝惟五阳有刃"><span>羊刃</span><select id="optYr"><option>通会 · 禄前一辰</option><option>子平 · 惟五阳</option></select></label>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <section class="view on" data-view="chart">
+    <div class="vhead"><h2>四柱命盘</h2><span id="meta">—</span></div>
+    <div id="warn"></div>
+    <div class="empty" id="empty"><b>尚未起盘</b><span>填入公历生日与出生时刻，点「起盘」。经度默认东八区 120°E，填出生地经度即按真太阳时定时柱。</span></div>
+    <div class="chart"><div class="chart-scroll"><div class="grid" id="grid"></div></div></div>
+    <p class="hint">虚线词可悬停，点一下固定</p>
+
+    <div class="sub-head">五行消长<i></i></div>
+    <div class="wuxing" id="wuxing"></div>
+
+    <div class="sub-head">核心判断<i></i></div>
+    <div class="cards" id="cores"></div>
+
+    <div class="sub-head">凭什么这么判<i></i></div>
+    <div id="accChart"></div>
+  </section>
+
+  <section class="view" data-view="luck">
+    <div class="vhead"><h2>大运流转</h2><span>点选一运，下看其十年</span></div>
+    <div class="dy-wrap"><div class="dy-rail" id="dayun"></div></div>
+    <div id="dyDetail"></div>
+
+    <div class="sub-head">流年纪事<i></i></div>
+    <div class="ln-grid" id="liunian"></div>
+    <div id="lnDetail"></div>
+  </section>
+
+  <section class="view" data-view="read">
+    <div class="vhead"><h2>命理研判</h2><span></span></div>
+    <div id="accRead"></div>
+  </section>
+
+  <section class="view" data-view="dict">
+    <div class="vhead"><h2>名词解法</h2><span></span></div>
+    <p class="note" style="margin:0 0 14px">词卡下小字为<b>出处</b>，指不到书的直书「无单条定义」。虚线词可悬停看<b>原文·推演·注解</b>三层，每层各标出处；此页只讲名相，某颗星在具体一造上成不成立，见命盘与运势。全书原文在<b>典籍</b>。</p>
+    <div id="accDict"></div>
+  </section>
+  <section class="view" data-view="classics">
+    <div class="vhead"><h2>典籍原文</h2><span>两书全本</span></div>
+    <p class="note" style="margin:0 0 16px">只放原文，不加解释。《滴天髓輯要》四十二篇用清·陳之遴（素庵）輯本，繁体照录，注亦素庵注；《穷通宝鉴》一百一十六段覆盖一百二十格，原书一篇常合论数月，页内逐篇标明。</p>
+    <div id="clsBox">
+      <div class="cls-bar">
+        <button class="cls-tab on" data-b="dts">《滴天髓輯要》四十二篇</button>
+        <button class="cls-tab" data-b="qt">《穷通宝鉴》一百一十六段</button>
+        <span class="cls-count" id="clsCount"></span>
+      </div>
+      <div class="cls-wrap">
+        <nav class="cls-idx" id="clsIdx"></nav>
+        <article class="cls-body" id="clsBody"></article>
+      </div>
+    </div>
+    <div id="clsBio"></div>
+  </section>
+
+
+  <footer class="foot">神煞取常用规则 · 节气按东八区推算 · 用神取扶抑简法 · 命理是解释系统，仅供自省</footer>
+</main>
+
+<!-- 脚本：经典脚本，共享全局作用域；编号即加载顺序，后加载者可调用前者 -->
+<script src="js/00-base.js"></script>
+<script src="js/01-nayin.js"></script>
+<script src="js/02-changsheng.js"></script>
+<script src="js/03-tiaohou.js"></script>
+<script src="js/04-qt-text.js"></script>
+<script src="js/05-ditantui.js"></script>
+<script src="js/06-rules.js"></script>
+<script src="js/07-shensha-data.js"></script>
+<script src="js/08-shishen-data.js"></script>
+<script src="js/09-daymaster-data.js"></script>
+<script src="js/10-calendar.js"></script>
+<script src="js/11-ganzhi.js"></script>
+<script src="js/12-compute.js"></script>
+<script src="js/13-relations.js"></script>
+<script src="js/14-dom.js"></script>
+<script src="js/15-reading.js"></script>
+<script src="js/16-view-chart.js"></script>
+<script src="js/17-view-luck.js"></script>
+<script src="js/18-view-read.js"></script>
+<script src="js/19-view-dict.js"></script>
+<script src="js/20-view-classics.js"></script>
+<script src="js/21-view-switch.js"></script>
+<script src="js/22-sources.js"></script>
+<script src="js/23-weigh.js"></script>
+<script src="js/24-tip.js"></script>
+<script src="js/25-app.js"></script>
+<script src="js/26-background.js"></script>
+<script src="js/27-init.js"></script>
+</body>
+</html>

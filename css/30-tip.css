@@ -1,0 +1,68 @@
+/* ==========================================================================
+   玄枢 · 四柱排盘   30-tip   浮窗
+   悬浮释义、固定态、滚动体、古断/推演层
+   ========================================================================== */
+
+/* ============ 悬浮释义 ============ */
+.t{border-bottom:1px dotted rgba(212,175,55,.4);cursor:help;transition:color .3s,border-color .3s}
+.t:hover{color:var(--gold2);border-color:var(--gold)}
+.tip{position:fixed;left:0;top:0;z-index:70;max-width:386px;padding:13px 16px 12px;pointer-events:none;
+  background:rgba(13,13,20,.97);border:1px solid rgba(212,175,55,.38);border-radius:2px;
+  box-shadow:0 26px 60px -24px #000,0 0 0 1px rgba(0,0,0,.4);opacity:0;transform:translateY(7px) scale(.975);
+  transition:opacity .2s ease,transform .24s cubic-bezier(.2,.8,.25,1)}
+.tip.on{opacity:1;transform:none}
+.tip.pin{pointer-events:auto;border-color:rgba(212,175,55,.6);box-shadow:0 30px 72px -22px #000,0 0 0 1px rgba(212,175,55,.16)}
+.tip .tiphd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}
+.tip .tiphd b{display:block;font-size:12px;color:var(--gold2);letter-spacing:.18em;font-weight:400;margin:0}
+.tip .tipx{flex:none;appearance:none;background:transparent;border:1px solid rgba(212,175,55,.26);color:var(--gold3);
+  width:20px;height:20px;line-height:1;border-radius:2px;cursor:pointer;font-size:13px;padding:0;
+  opacity:0;transition:opacity .2s,color .2s,border-color .2s}
+.tip.pin .tipx{opacity:.92}
+.tip .tipx:hover{color:#fff;border-color:var(--gold)}
+.tip .tipbody{max-height:calc(100vh - 132px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.tip .tipbody::-webkit-scrollbar{width:6px}
+.tip .tipbody::-webkit-scrollbar-thumb{background:rgba(212,175,55,.26);border-radius:3px}
+.tip .pinhint{margin-top:9px;padding-top:7px;border-top:1px solid rgba(212,175,55,.14);
+  font-size:10px;color:var(--gold3);opacity:.82;letter-spacing:.04em}
+.tip.pin .pinhint{display:none}
+.tip details.wgt{margin-top:8px}
+.tip details.wgt>summary{list-style:none;cursor:pointer;font-size:10.5px;color:var(--gold3);letter-spacing:.06em;outline:none}
+.tip details.wgt>summary::-webkit-details-marker{display:none}
+.tip details.wgt>summary:before{content:"▸ ";opacity:.7}
+.tip details.wgt[open]>summary:before{content:"▾ "}
+@media (max-width:600px){.tip{max-width:calc(100vw - 22px);padding:11px 12px 10px}.tip .tipbody{max-height:calc(100vh - 150px)}}
+.tip b{display:block;font-size:12px;color:var(--gold2);letter-spacing:.18em;margin-bottom:9px;font-weight:400}
+.tip i{display:block;font-style:normal;font-size:12px;color:var(--txt);line-height:1.9;letter-spacing:.02em}
+.tip .tr em{white-space:nowrap}
+.tip .tr{display:flex;gap:9px;margin-bottom:7px}
+.tip .tr:last-of-type{margin-bottom:0}
+.tip .tr em{flex:none;width:24px;font-style:normal;font-size:10px;line-height:1.9;color:var(--gold3);letter-spacing:.08em;opacity:.8}
+.tip .tr span{font-size:11.5px;line-height:1.9;letter-spacing:.02em}
+.tip .tr.q span{color:#cdc5b2}
+.tip .tr.w{background:rgba(212,175,55,.05);border-left:2px solid rgba(212,175,55,.42);
+  padding:5px 9px 5px 8px;margin-left:-9px;border-radius:1px}
+.tip .tr.w em{color:var(--gold2);opacity:1}
+.tip .tr.w span{color:#ded4bb}
+.tip .tr.n span{color:var(--txt)}
+.tip .tr.hd{background:rgba(168,96,60,.10);border-left:2px solid rgba(196,124,84,.46);
+  padding:5px 9px 5px 8px;margin-left:-9px;border-radius:1px}
+.tip .tr.hd em{color:#d8a882;opacity:1}
+.tip .tr.hd span{color:#d3c2ae}
+.tip .tr.hd .ci{opacity:.82;color:#b08e73}
+.tip .ci{display:block;font-style:normal;font-size:10px;line-height:1.6;color:var(--gold3);opacity:.9;
+  margin-top:4px;text-align:right;letter-spacing:.02em}
+.tip .tr.w .ci{opacity:.72;color:#b9ab84}
+.tip .cn{font-size:10.5px;color:#a99f88}
+.tip .src{margin-top:8px;padding-top:7px;border-top:1px solid rgba(212,175,55,.14);font-size:10px;line-height:1.7;color:var(--gold3);letter-spacing:.02em;text-align:left;opacity:.8}
+.tip .src b{display:inline;font-size:10px;color:var(--gold2);letter-spacing:.06em;margin-right:4px}
+.tip .src+.src{margin-top:3px;padding-top:0;border-top:none;opacity:.62}
+.tip .src .ci{display:inline;margin-left:6px;text-align:left;opacity:1}
+.tip .src .lv{color:var(--gold2)}
+.tip .tr .lag{display:inline-block;margin-right:5px;padding:0 4px;border:1px solid rgba(212,175,55,.45);border-radius:2px;
+  font-size:9px;line-height:1.55;color:var(--gold2);letter-spacing:.06em;vertical-align:1px;font-weight:400}
+.tip .basis{display:block;margin-top:5px;font-size:9.5px;line-height:1.65;color:#a89a74;letter-spacing:.01em}
+.tip .ns{display:block;margin-top:4px;font-style:normal;font-size:9.5px;line-height:1.65;color:#c08a5a;letter-spacing:.03em}
+.tip .ns.soft{color:#b09a6c}
+
+/* 口诀标记：底本无此句，只有通行歌诀 */
+.tip .tr.q .kn{display:block;margin-top:4px;font-size:10.5px;line-height:1.7;color:#b08e73;opacity:.95;font-style:normal}

@@ -1,0 +1,28 @@
+/* ==========================================================================
+   玄枢 · 四柱排盘   20-chart   命盘
+   四柱表、表头、行、干支字
+   ========================================================================== */
+
+/* ============ 命盘表 ============ */
+.chart{border:1px solid var(--line);border-radius:2px;overflow:hidden;background:linear-gradient(170deg,rgba(16,16,26,.66),rgba(6,6,11,.8));backdrop-filter:blur(8px)}
+.chart-scroll{overflow-x:auto;scrollbar-width:thin}
+.grid{display:grid;grid-template-columns:84px repeat(4,minmax(108px,1fr));min-width:544px}
+.grid>div{padding:10px 8px;text-align:center;border-bottom:1px solid rgba(212,175,55,.065)}
+.grid>div.lbl{text-align:left;padding-left:20px;font-size:10.5px;color:var(--dim2);letter-spacing:.22em;border-right:1px solid rgba(212,175,55,.08)}
+.grid .rl>div{border-bottom:0}
+.hd{font-size:11px;color:var(--gold3);letter-spacing:.32em;text-indent:.32em;padding:15px 8px}
+.hd.cur{color:var(--gold2);text-shadow:0 0 16px rgba(212,175,55,.5)}
+.gz{font-size:33px;line-height:1.3;display:inline-block;letter-spacing:.04em}
+.gz .ch{display:inline-block;animation:inkIn .9s cubic-bezier(.2,.8,.25,1) both}
+.sm{font-size:11px;color:var(--dim);letter-spacing:.1em}
+.cang{display:flex;flex-direction:column;gap:3px;align-items:center}
+.cang .c{font-size:12px;display:flex;gap:5px;align-items:baseline;letter-spacing:.04em}
+.cang .c em{font-style:normal;font-size:9.5px;color:var(--dim2)}
+.tags{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;padding:11px 6px!important}
+.tg{font-size:10px;padding:2px 7px;border:1px solid rgba(212,175,55,.2);color:var(--dim);border-radius:1px;letter-spacing:.04em;white-space:nowrap;cursor:help;transition:all .3s}
+.tg.g{color:#a8cbb9;border-color:rgba(110,168,154,.32);background:rgba(110,168,154,.055)}
+.tg.b{color:#cc9b94;border-color:rgba(178,59,48,.3);background:rgba(178,59,48,.05)}
+.tg:hover{transform:translateY(-1px)}
+.cell-in{animation:cellIn .7s cubic-bezier(.2,.8,.25,1) both}
+@keyframes cellIn{from{opacity:0;transform:translateY(14px);filter:blur(5px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes inkIn{0%{opacity:0;filter:blur(11px);transform:translateY(9px) scale(1.22)}55%{opacity:1;filter:blur(0)}100%{opacity:1;filter:blur(0);transform:none}}

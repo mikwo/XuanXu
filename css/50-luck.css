@@ -1,0 +1,31 @@
+/* ==========================================================================
+   玄枢 · 四柱排盘   50-luck   运势
+   大运轨道、流年网格、详情
+   ========================================================================== */
+
+/* ============ 大运 ============ */
+.dy-wrap{overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.dy-rail{display:grid;grid-template-columns:repeat(10,1fr);gap:8px;min-width:740px}
+.dy-item{border:1px solid var(--line);border-radius:2px;padding:14px 4px 11px;text-align:center;cursor:pointer;background:rgba(10,10,17,.5);transition:all .45s cubic-bezier(.2,.8,.25,1)}
+.dy-item:hover{border-color:var(--line2);transform:translateY(-3px);background:rgba(20,20,30,.7)}
+.dy-item.act{border-color:rgba(212,175,55,.55);background:linear-gradient(180deg,rgba(212,175,55,.13),rgba(212,175,55,.02))}
+.dy-item .gz{font-size:19px;color:var(--gold2);margin-bottom:5px;letter-spacing:.02em}
+.dy-item .age{font-size:9.5px;color:var(--dim2);letter-spacing:.06em}
+.dy-item .vd{font-size:9.5px;margin-top:4px;letter-spacing:.1em}
+.vd.good{color:#9cc7ae}.vd.mid{color:var(--dim)}.vd.bad{color:#cb968e}
+
+.detail{margin-top:14px;border:1px solid var(--line2);border-radius:2px;padding:19px 21px;background:linear-gradient(170deg,rgba(18,18,28,.7),rgba(7,7,12,.8));animation:viewIn .42s both}
+.detail h3{font-size:14px;font-weight:400;color:var(--gold2);letter-spacing:.24em;margin-bottom:4px}
+.detail .sub{font-size:11px;color:var(--dim2);letter-spacing:.14em;margin-bottom:12px}
+.detail p{font-size:12.5px;line-height:2;margin-bottom:8px}
+.detail .row{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 12px}
+
+/* ============ 流年 ============ */
+.ln-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
+.ln-item{border:1px solid rgba(212,175,55,.1);border-radius:2px;padding:11px 10px;background:rgba(8,8,13,.45);cursor:pointer;transition:all .4s;animation:cellIn .5s both}
+.ln-item:hover{border-color:rgba(212,175,55,.32);background:rgba(212,175,55,.05);transform:translateY(-2px)}
+.ln-item.act{border-color:rgba(212,175,55,.52);background:rgba(212,175,55,.09)}
+.ln-item .y{font-size:9.5px;color:var(--dim2);letter-spacing:.12em}
+.ln-item .g{font-size:16px;color:var(--gold2);margin:3px 0 2px;letter-spacing:.04em}
+.ln-item .s{font-size:10px;color:var(--dim);letter-spacing:.08em}
+.ln-item.now .y::after{content:"·今";color:var(--gold)}

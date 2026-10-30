@@ -1,0 +1,10 @@
+# 临时解析产物（PDF 抽取中间文件等），不入库
+_tmp/
+
+# 底本 PDF：公有领域古籍影印件，体积大且与 txt 重复
+*.pdf
+
+node_modules/
+*.log
+.DS_Store
+Thumbs.db

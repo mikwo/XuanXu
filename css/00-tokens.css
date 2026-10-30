@@ -1,0 +1,16 @@
+/* ==========================================================================
+   玄枢 · 四柱排盘   00-tokens   变量与基调
+   颜色令牌、字体栈、重置、body 基调
+   ========================================================================== */
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#05050a;
+  --gold:#d4af37; --gold2:#f0dda4; --gold3:#a3873a;
+  --txt:#d6d0c2; --dim:#8b8577; --dim2:#5b574e;
+  --line:rgba(212,175,55,.13); --line2:rgba(212,175,55,.32);
+  --serif:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong","SimSun",serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(212,175,55,.28)}

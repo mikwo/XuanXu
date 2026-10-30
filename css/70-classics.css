@@ -1,0 +1,59 @@
+/* ==========================================================================
+   玄枢 · 四柱排盘   70-classics.css   典籍原文页
+   左目录右正文的读经版面
+   ========================================================================== */
+
+.cls-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid rgba(212,175,55,.12)}
+.cls-tab{background:none;border:1px solid transparent;color:var(--dim2);font-family:inherit;font-size:12.5px;
+  letter-spacing:.14em;padding:7px 14px;border-radius:2px;cursor:pointer;transition:all .35s}
+.cls-tab:hover{color:var(--gold2)}
+.cls-tab.on{color:var(--gold2);border-color:rgba(212,175,55,.34);background:rgba(212,175,55,.05)}
+.cls-count{margin-left:auto;font-size:10.5px;color:var(--dim2);letter-spacing:.16em}
+
+.cls-wrap{display:grid;grid-template-columns:206px minmax(0,1fr);gap:26px;margin-top:16px}
+.cls-idx{max-height:66vh;overflow-y:auto;padding-right:6px;scrollbar-width:thin}
+.cls-idx::-webkit-scrollbar{width:5px}
+.cls-idx::-webkit-scrollbar-thumb{background:rgba(212,175,55,.22);border-radius:3px}
+.cls-item{display:flex;gap:8px;width:100%;text-align:left;background:none;border:0;border-left:2px solid transparent;
+  padding:6px 9px;cursor:pointer;font-family:inherit;font-size:12px;color:var(--dim2);letter-spacing:.08em;transition:all .3s}
+.cls-item:hover{color:var(--gold2);background:rgba(212,175,55,.04)}
+.cls-item.on{color:var(--gold2);border-left-color:var(--gold);background:rgba(212,175,55,.06)}
+.cls-item .cn{opacity:.62;font-size:10.5px;min-width:2.6em;line-height:1.9}
+.cls-item .ct{line-height:1.9}
+
+.cls-body{min-height:320px;max-width:72ch}
+.cls-ti{font-size:20px;color:var(--gold2);letter-spacing:.22em;margin-bottom:6px}
+.cls-sub{font-size:10.5px;color:var(--dim2);letter-spacing:.12em;margin-bottom:16px}
+.cls-body .cq{font-size:13.5px;line-height:2.15;color:#e8dfc9;letter-spacing:.02em;white-space:pre-wrap}
+.cls-body .cz{margin-top:16px;padding-left:13px;border-left:1px solid rgba(212,175,55,.24);
+  font-size:12px;line-height:1.95;color:#a9a192}
+.cls-body .cz em{font-style:normal;color:var(--gold3);margin-right:8px;letter-spacing:.14em;font-size:10.5px}
+.cls-src{text-align:right;font-size:10.5px;color:#8f887a;margin-top:12px;letter-spacing:.08em}
+.cls-src2{margin-top:10px;font-size:10.5px;color:var(--dim2);line-height:1.9;letter-spacing:.04em}
+.cls-page{display:flex;align-items:center;gap:16px;margin-top:26px;padding-top:14px;border-top:1px solid rgba(212,175,55,.1);
+  font-size:11px;color:var(--dim2);letter-spacing:.14em}
+.cls-pg{background:none;border:1px solid rgba(212,175,55,.22);color:var(--dim);font-family:inherit;font-size:11.5px;
+  padding:5px 12px;border-radius:2px;cursor:pointer;letter-spacing:.12em;transition:all .3s}
+.cls-pg:hover:not(:disabled){color:var(--gold2);border-color:rgba(212,175,55,.5)}
+.cls-pg:disabled{opacity:.3;cursor:default}
+
+/* 词解卡：出处行与原文引句 */
+.dict-item .dsrc{display:block;margin-top:7px;font-style:normal;font-size:10.5px;line-height:1.85;color:#8f887a;letter-spacing:.03em}
+.dict-item .dsrc em{font-style:normal;color:var(--gold3);margin-right:5px;letter-spacing:.12em}
+.dict-item .dsrc b{font-weight:400;color:rgba(212,175,55,.42);margin:0 6px}
+.dict-item .dq{margin-top:7px;padding-left:9px;border-left:1px solid rgba(212,175,55,.2);
+  font-size:11px;line-height:1.85;color:#c9bfa6;letter-spacing:.02em}
+.dict-item b.t{cursor:help;text-decoration:underline dashed rgba(212,175,55,.34);text-underline-offset:5px}
+
+@media(max-width:900px){
+  .cls-wrap{grid-template-columns:1fr;gap:14px}
+  .cls-idx{max-height:none;display:flex;flex-wrap:wrap;gap:4px;padding:0 0 8px;border-bottom:1px solid rgba(212,175,55,.1)}
+  .cls-item{width:auto;border-left:0;border-bottom:2px solid transparent;padding:5px 8px}
+  .cls-item.on{border-bottom-color:var(--gold)}
+  .cls-ti{font-size:17px}
+  .cls-body .cq{font-size:13px;line-height:2}
+}
+
+/* 目录中的日干分组标题 */
+.cls-grp{display:block;margin:12px 0 4px;padding:0 10px;font-size:10.5px;letter-spacing:.18em;color:rgba(212,175,55,.62);font-style:normal}
+.cls-idx>.cls-grp:first-child{margin-top:0}
